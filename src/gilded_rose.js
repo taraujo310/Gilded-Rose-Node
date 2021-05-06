@@ -39,6 +39,10 @@ class Shop {
     return;
   }
 
+  _backstageUpdate(item) {
+    return;
+  }
+
   _update(item) {
     switch(item.name) {
       case 'normal':
@@ -47,6 +51,8 @@ class Shop {
         return this._agedBrieUpdate(item);
       case 'Sulfuras':
         return this._sulfurasUpdate(item);
+      case 'Backstage passes to a TAFKAL80ETC concert':
+        return this._backstageUpdate(item);
     }
 
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
