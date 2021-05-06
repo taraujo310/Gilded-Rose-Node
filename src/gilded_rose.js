@@ -34,6 +34,16 @@ class AgedBrie extends Item {
   }
 }
 
+class Sulfuras extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    return;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -56,7 +66,7 @@ class Shop {
   }
 
   _sulfurasUpdate(item) {
-    return;
+    item.update();
   }
 
   _backstageUpdate(item) {
@@ -91,5 +101,6 @@ module.exports = {
   Item,
   Normal,
   AgedBrie,
+  Sulfuras,
   Shop
 }
