@@ -71,44 +71,14 @@ class Shop {
 
   update() {
     for (let i = 0; i < this.items.length; i++) {
-      this._update(this.items[i])
+      this.items[i].update();
     }
 
     return this.items;
   }
-
-  _normalUpdate(item) {
-    item.update();
-  }
-
-  _agedBrieUpdate(item) {
-    item.update();
-  }
-
-  _sulfurasUpdate(item) {
-    item.update();
-  }
-
-  _backstageUpdate(item) {
-    item.update();
-  }
-
-  _update(item) {
-    switch(item.name) {
-      case 'normal':
-        return this._normalUpdate(item);
-      case 'Aged Brie':
-        return this._agedBrieUpdate(item);
-      case 'Sulfuras':
-        return this._sulfurasUpdate(item);
-      case 'Backstage passes to a TAFKAL80ETC concert':
-        return this._backstageUpdate(item);
-    }
-  }
 }
 
 module.exports = {
-  Item,
   Normal,
   AgedBrie,
   Sulfuras,
