@@ -61,6 +61,12 @@ class Backstage extends Item {
 class Shop {
   constructor(items=[]){
     this.items = items;
+    this.types = {
+      'normal': Normal,
+      'Aged Brie': AgedBrie,
+      "Sulfuras, Hand of Ragnaros": Item,
+      'Backstage passes to a TAFKAL80ETC concert': Backstage
+    }
   }
 
   update() {
@@ -73,16 +79,7 @@ class Shop {
   }
 
   _factory(item) {
-    switch(item.name) {
-      case 'normal':
-        return new Normal(item);
-      case 'Aged Brie':
-        return new AgedBrie(item);
-      case "Sulfuras, Hand of Ragnaros":
-        return new Item(item);
-      case 'Backstage passes to a TAFKAL80ETC concert':
-        return new Backstage(item);
-    }
+    return new this.types[item.name](item);
   }
 }
 
