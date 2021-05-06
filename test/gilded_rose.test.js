@@ -1,39 +1,55 @@
-const {Shop, Normal, AgedBrie, Sulfuras, Backstage} = require("../src/gilded_rose");
+const {
+  Shop,
+  Normal,
+  AgedBrie,
+  Sulfuras,
+  Backstage,
+} = require("../src/gilded_rose");
 
 describe("Gilded Rose", () => {
   describe("Normal Item", () => {
+    const name = "normal";
+
     it("before_sell_date", () => {
-      const gildedRose = new Shop([new Normal("normal", 10, 5)]);
+      const gildedRose = new Shop([
+        new Normal({ name, sellIn: 10, quality: 5 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(4);
       expect(items[0].sellIn).toBe(9);
-    })
+    });
 
     it("on_sell_date", () => {
-      const gildedRose = new Shop([new Normal("normal", 0, 5)]);
+      const gildedRose = new Shop([
+        new Normal({ name, sellIn: 0, quality: 5 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(3);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("after_sell_date", () => {
-      const gildedRose = new Shop([new Normal("normal", -1, 5)]);
+      const gildedRose = new Shop([
+        new Normal({ name, sellIn: -1, quality: 5 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(3);
       expect(items[0].sellIn).toBe(-2);
-    })
+    });
 
     it("of_zero_quality", () => {
-      const gildedRose = new Shop([new Normal("normal", 10, 0)]);
+      const gildedRose = new Shop([
+        new Normal({ name, sellIn: 10, quality: 0 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(0);
       expect(items[0].sellIn).toBe(9);
-    })
-  })
+    });
+  });
 
   describe("Aged Brie Item", () => {
     it("before_sell_date", () => {
