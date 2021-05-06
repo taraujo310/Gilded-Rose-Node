@@ -35,12 +35,18 @@ class Shop {
     if (item.sellIn <= 0) item.quality = item.quality + 1;
   }
 
+  _sulfurasUpdate(item) {
+    return;
+  }
+
   _update(item) {
     switch(item.name) {
       case 'normal':
         return this._normalUpdate(item);
       case 'Aged Brie':
         return this._agedBrieUpdate(item);
+      case 'Sulfuras':
+        return this._sulfurasUpdate(item);
     }
 
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
