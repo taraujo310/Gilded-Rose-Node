@@ -1,5 +1,5 @@
 class Item {
-  constructor(name, sellIn, quality){
+  constructor({ name, sellIn, quality }){
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
@@ -12,7 +12,7 @@ class Item {
 
 class Normal extends Item {
   constructor({ name, sellIn, quality }) {
-    super(name, sellIn, quality);
+    super({ name, sellIn, quality });
   }
 
   update() {
@@ -26,7 +26,7 @@ class Normal extends Item {
 
 class AgedBrie extends Item {
   constructor({ name, sellIn, quality }) {
-    super(name, sellIn, quality);
+    super({ name, sellIn, quality });
   }
 
   update() {
@@ -40,7 +40,7 @@ class AgedBrie extends Item {
 
 class Backstage extends Item {
   constructor({ name, sellIn, quality }) {
-    super(name, sellIn, quality);
+    super({ name, sellIn, quality });
   }
 
   update() {
@@ -90,7 +90,6 @@ module.exports = {
   Item,
   Normal,
   AgedBrie,
-  Sulfuras,
   Backstage,
   Shop
 }

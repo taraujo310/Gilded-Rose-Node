@@ -1,10 +1,4 @@
-const {
-  Shop,
-  Normal,
-  AgedBrie,
-  Sulfuras,
-  Backstage,
-} = require("../src/gilded_rose");
+const { Shop } = require("../src/gilded_rose");
 
 describe("Gilded Rose", () => {
   describe("Normal Item", () => {
