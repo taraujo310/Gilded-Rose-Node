@@ -158,100 +158,125 @@ describe("Gilded Rose", () => {
   });
 
   describe("Backstage", () => {
+    const name = "Backstage passes to a TAFKAL80ETC concert";
     it("long_before_sell_date", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 11, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 11, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(31);
       expect(items[0].sellIn).toBe(10);
-    })
+    });
 
     it("medium_before_sell_date_upper_bound", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 10, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 10, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(32);
       expect(items[0].sellIn).toBe(9);
-    })
+    });
 
     it("medium_before_sell_date_upper_bound_at_max_quality", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 10, 50)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 10, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(9);
-    })
+    });
 
     it("medium_before_sell_date_lower_bound", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 6, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 6, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(32);
       expect(items[0].sellIn).toBe(5);
-    })
+    });
 
     it("medium_before_sell_date_lower_bound_at_max_quality", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 6, 50)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 6, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(5);
-    })
+    });
 
     it("very_close_to_sell_date_upper_bound", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 5, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 5, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(33);
       expect(items[0].sellIn).toBe(4);
-    })
+    });
 
     it("very_close_to_sell_date_upper_bound_at_max_quality", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 5, 50)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 5, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(4);
-    })
+    });
 
     it("very_close_to_sell_date_lower_bound", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 1, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 1, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(33);
       expect(items[0].sellIn).toBe(0);
-    })
+    });
 
     it("very_close_to_sell_date_lower_bound_at_max_quality", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 1, 50)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 1, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(0);
-    })
+    });
 
     it("on_sell_date", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 0, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 0, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(0);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("on_sell_date_at_max_quality", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', 0, 50)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: 0, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(0);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("after_sell_date", () => {
-      const gildedRose = new Shop([new Backstage('Backstage passes to a TAFKAL80ETC concert', -1, 30)]);
+      const gildedRose = new Shop([
+        new Backstage({ name, sellIn: -1, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(0);
       expect(items[0].sellIn).toBe(-2);
-    })
-  })
+    });
+  });
 });

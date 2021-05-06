@@ -45,7 +45,7 @@ class Sulfuras extends Item {
 }
 
 class Backstage extends Item {
-  constructor(name, sellIn, quality) {
+  constructor({ name, sellIn, quality }) {
     super(name, sellIn, quality);
   }
 
