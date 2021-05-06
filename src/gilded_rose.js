@@ -44,6 +44,26 @@ class Sulfuras extends Item {
   }
 }
 
+class Backstage extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn = this.sellIn - 1;
+
+    if (this.sellIn < 0) {
+      this.quality = 0;
+      return;
+    }
+    if (this.quality >= 50) return;
+
+    this.quality = this.quality + 1;
+    if (this.sellIn < 10) this.quality = this.quality + 1;
+    if (this.sellIn < 5) this.quality = this.quality + 1;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -70,17 +90,7 @@ class Shop {
   }
 
   _backstageUpdate(item) {
-    item.sellIn = item.sellIn - 1;
-
-    if (item.sellIn < 0) {
-      item.quality = 0;
-      return;
-    }
-    if (item.quality >= 50) return;
-
-    item.quality = item.quality + 1;
-    if (item.sellIn < 10) item.quality = item.quality + 1;
-    if (item.sellIn < 5) item.quality = item.quality + 1;
+    item.update();
   }
 
   _update(item) {
@@ -102,5 +112,6 @@ module.exports = {
   Normal,
   AgedBrie,
   Sulfuras,
+  Backstage,
   Shop
 }
