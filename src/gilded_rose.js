@@ -4,6 +4,10 @@ class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+
+  update() {
+    return;
+  }
 }
 
 class Normal extends Item {
@@ -31,16 +35,6 @@ class AgedBrie extends Item {
 
     this.quality = this.quality + 1;
     if (this.sellIn <= 0) this.quality = this.quality + 1;
-  }
-}
-
-class Sulfuras extends Item {
-  constructor({ name, sellIn, quality }) {
-    super(name, sellIn, quality);
-  }
-
-  update() {
-    return;
   }
 }
 
@@ -85,7 +79,7 @@ class Shop {
       case 'Aged Brie':
         return new AgedBrie(item);
       case "Sulfuras, Hand of Ragnaros":
-        return new Sulfuras(item);
+        return new Item(item);
       case 'Backstage passes to a TAFKAL80ETC concert':
         return new Backstage(item);
     }
