@@ -61,10 +61,11 @@ class Backstage extends Item {
 class Shop {
   constructor(items=[]){
     this.items = items;
+
+    this.defaultType = Item;
     this.types = {
       'normal': Normal,
       'Aged Brie': AgedBrie,
-      "Sulfuras, Hand of Ragnaros": Item,
       'Backstage passes to a TAFKAL80ETC concert': Backstage
     }
   }
@@ -79,7 +80,8 @@ class Shop {
   }
 
   _factory(item) {
-    return new this.types[item.name](item);
+    const klass = this.types[item.name] || this.defaultType;
+    return new klass(item);
   }
 }
 
