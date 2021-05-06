@@ -19,8 +19,13 @@ class Shop {
     return this.items;
   }
 
+  _normalUpdate(item) {
+    item.quality = item.quality - 1;
+    item.sellIn = item.sellIn - 1;
+  }
+
   _update(item) {
-    if (item.name === 'normal') return;
+    if (item.name === 'normal') return this._normalUpdate(item);
 
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (item.quality > 0) {
