@@ -52,62 +52,77 @@ describe("Gilded Rose", () => {
   });
 
   describe("Aged Brie Item", () => {
+    const name = "Aged Brie";
     it("before_sell_date", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", 10, 30)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: 10, quality: 30 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(31);
       expect(items[0].sellIn).toBe(9);
-    })
+    });
 
     it("before_sell_date_with_max_quality", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", 10, 50)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: 10, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(9);
-    })
+    });
 
     it("on_sell_date", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", 0, 5)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: 0, quality: 5 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(7);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("on_sell_date_near_max_quality", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", 0, 44)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: 0, quality: 44 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(46);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("on_sell_date_with_max_quality", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", 0, 50)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: 0, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(-1);
-    })
+    });
 
     it("after_sell_date", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", -1, 5)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: -1, quality: 5 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(7);
       expect(items[0].sellIn).toBe(-2);
-    })
+    });
 
     it("after_sell_date_with_max_quality", () => {
-      const gildedRose = new Shop([new AgedBrie("Aged Brie", -1, 50)]);
+      const gildedRose = new Shop([
+        new AgedBrie({ name, sellIn: -1, quality: 50 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(50);
       expect(items[0].sellIn).toBe(-2);
-    })
-  })
+    });
+  });
 
   describe("Sulfuras", () => {
     it("before_sell_date", () => {
