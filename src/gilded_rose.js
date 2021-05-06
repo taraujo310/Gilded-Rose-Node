@@ -20,6 +20,8 @@ class Shop {
   }
 
   _update(item) {
+    if (item.name === 'normal') return;
+
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (item.quality > 0) {
         if (item.name != 'Sulfuras, Hand of Ragnaros') {
