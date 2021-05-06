@@ -35,7 +35,7 @@ class AgedBrie extends Item {
 }
 
 class Sulfuras extends Item {
-  constructor(name, sellIn, quality) {
+  constructor({ name, sellIn, quality }) {
     super(name, sellIn, quality);
   }
 

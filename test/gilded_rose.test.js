@@ -125,30 +125,37 @@ describe("Gilded Rose", () => {
   });
 
   describe("Sulfuras", () => {
+    const name = "Sulfuras, Hand of Ragnaros";
     it("before_sell_date", () => {
-      const gildedRose = new Shop([new Sulfuras("Sulfuras, Hand of Ragnaros", 10, 80)]);
+      const gildedRose = new Shop([
+        new Sulfuras({ name, sellIn: 10, quality: 80 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(80);
       expect(items[0].sellIn).toBe(10);
-    })
+    });
 
     it("on_sell_date", () => {
-      const gildedRose = new Shop([new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80)]);
+      const gildedRose = new Shop([
+        new Sulfuras({ name, sellIn: 0, quality: 80 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(80);
       expect(items[0].sellIn).toBe(0);
-    })
+    });
 
     it("after_sell_date", () => {
-      const gildedRose = new Shop([new Sulfuras("Sulfuras, Hand of Ragnaros", -2, 80)]);
+      const gildedRose = new Shop([
+        new Sulfuras({ name, sellIn: -2, quality: 80 }),
+      ]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(80);
       expect(items[0].sellIn).toBe(-2);
-    })
-  })
+    });
+  });
 
   describe("Backstage", () => {
     it("long_before_sell_date", () => {
