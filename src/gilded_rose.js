@@ -6,6 +6,20 @@ class Item {
   }
 }
 
+class Normal extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn = this.sellIn - 1;
+    if (this.quality == 0) return;
+
+    this.quality = this.quality - 1;
+    if (this.sellIn <= 0) this.quality = this.quality - 1;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -20,11 +34,7 @@ class Shop {
   }
 
   _normalUpdate(item) {
-    item.sellIn = item.sellIn - 1;
-    if (item.quality == 0) return;
-
-    item.quality = item.quality - 1;
-    if (item.sellIn <= 0) item.quality = item.quality - 1;
+    item.update();
   }
 
   _agedBrieUpdate(item) {
@@ -69,5 +79,6 @@ class Shop {
 
 module.exports = {
   Item,
+  Normal,
   Shop
 }

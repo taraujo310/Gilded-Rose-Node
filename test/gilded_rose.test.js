@@ -1,9 +1,9 @@
-const {Shop, Item} = require("../src/gilded_rose");
+const {Shop, Item, Normal} = require("../src/gilded_rose");
 
 describe("Gilded Rose", () => {
   describe("Normal Item", () => {
     it("before_sell_date", () => {
-      const gildedRose = new Shop([new Item("normal", 10, 5)]);
+      const gildedRose = new Shop([new Normal("normal", 10, 5)]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(4);
@@ -11,7 +11,7 @@ describe("Gilded Rose", () => {
     })
 
     it("on_sell_date", () => {
-      const gildedRose = new Shop([new Item("normal", 0, 5)]);
+      const gildedRose = new Shop([new Normal("normal", 0, 5)]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(3);
@@ -19,7 +19,7 @@ describe("Gilded Rose", () => {
     })
 
     it("after_sell_date", () => {
-      const gildedRose = new Shop([new Item("normal", -1, 5)]);
+      const gildedRose = new Shop([new Normal("normal", -1, 5)]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(3);
@@ -27,7 +27,7 @@ describe("Gilded Rose", () => {
     })
 
     it("of_zero_quality", () => {
-      const gildedRose = new Shop([new Item("normal", 10, 0)]);
+      const gildedRose = new Shop([new Normal("normal", 10, 0)]);
       const items = gildedRose.update();
 
       expect(items[0].quality).toBe(0);
