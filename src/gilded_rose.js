@@ -20,6 +20,20 @@ class Normal extends Item {
   }
 }
 
+class AgedBrie extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn = this.sellIn - 1;
+    if (this.quality >= 50) return;
+
+    this.quality = this.quality + 1;
+    if (this.sellIn <= 0) this.quality = this.quality + 1;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -38,11 +52,7 @@ class Shop {
   }
 
   _agedBrieUpdate(item) {
-    item.sellIn = item.sellIn - 1;
-    if (item.quality >= 50) return;
-
-    item.quality = item.quality + 1;
-    if (item.sellIn <= 0) item.quality = item.quality + 1;
+    item.update();
   }
 
   _sulfurasUpdate(item) {
@@ -80,5 +90,6 @@ class Shop {
 module.exports = {
   Item,
   Normal,
+  AgedBrie,
   Shop
 }
