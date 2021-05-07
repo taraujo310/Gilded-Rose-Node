@@ -2,7 +2,8 @@ const {
   Item,
   Normal,
   AgedBrie,
-  Backstage
+  Backstage,
+  Conjured
 } = require('./types');
 
 class Shop {
@@ -13,7 +14,8 @@ class Shop {
     this.types = {
       'normal': Normal,
       'Aged Brie': AgedBrie,
-      'Backstage passes to a TAFKAL80ETC concert': Backstage
+      'Backstage passes to a TAFKAL80ETC concert': Backstage,
+      'Conjured': Conjured
     }
   }
 

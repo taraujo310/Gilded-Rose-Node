@@ -221,4 +221,71 @@ describe("Gilded Rose", () => {
       expect(items[0].sellIn).toBe(-2);
     });
   });
+
+  describe("Conjure Item", () => {
+    const name = "Conjured";
+    it("before_sell_date", () => {
+      const gildedRose = new Shop([{ name, sellIn: 10, quality: 5 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(3);
+      expect(items[0].sellIn).toBe(9);
+    });
+
+    it("on_sell_date", () => {
+      const gildedRose = new Shop([{ name, sellIn: 0, quality: 5 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(1);
+      expect(items[0].sellIn).toBe(-1);
+    });
+
+    it("after_sell_date", () => {
+      const gildedRose = new Shop([{ name, sellIn: -1, quality: 5 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(1);
+      expect(items[0].sellIn).toBe(-2);
+    });
+
+    it("of_zero_quality", () => {
+      const gildedRose = new Shop([{ name, sellIn: 10, quality: 0 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(0);
+      expect(items[0].sellIn).toBe(9);
+    });
+
+    it("of_one_quality", () => {
+      const gildedRose = new Shop([{ name, sellIn: 0, quality: 1 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(0);
+      expect(items[0].sellIn).toBe(-1);
+    });
+
+    it("of_two_quality", () => {
+      const gildedRose = new Shop([{ name, sellIn: 0, quality: 2 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(0);
+      expect(items[0].sellIn).toBe(-1);
+    });
+
+    it("of_three_quality", () => {
+      const gildedRose = new Shop([{ name, sellIn: 0, quality: 3 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(0);
+      expect(items[0].sellIn).toBe(-1);
+    });
+
+    it("of_three_quality_and_one_sellIn", () => {
+      const gildedRose = new Shop([{ name, sellIn: 1, quality: 3 }]);
+      const items = gildedRose.update();
+
+      expect(items[0].quality).toBe(1);
+      expect(items[0].sellIn).toBe(0);
+    });
+  });
 });
